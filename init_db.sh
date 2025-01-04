@@ -12,7 +12,7 @@ psql -U happy_user -d happy_db <<-EOSQL
         CREATE TABLE NAMED_ENTITIES(
             ID SERIAL PRIMARY KEY,
             doc_id INTEGER,
-            entity VARCHAR
+            entity VARCHAR,
             value VARCHAR
         );
 
@@ -27,6 +27,15 @@ psql -U happy_user -d happy_db <<-EOSQL
             keywords VARCHAR,
             creation_date TIMESTAMP,
             producer VARCHAR
+        );
+
+        CREATE TABLE DOC_DATASET(
+            ID SERIAL PRIMARY KEY,
+            full_text_tesseract VARCHAR,
+            full_text_dedok VARCHAR,
+            file_name VARCHAR,
+            event VARCHAR,
+            format VARCHAR
         );
 
     COMMIT;
