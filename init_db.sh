@@ -5,9 +5,12 @@ psql -U happy_user -d happy_db <<-EOSQL
             ID SERIAL PRIMARY KEY,
             filename VARCHAR,
             content TEXT,
+            text_tesseract TEXT,
+            text_dedoc TEXT
             big_summary TEXT,
             summary TEXT,
-            upload_time TIMESTAMP
+            upload_time TIMESTAMP,
+            doc_format TEXT,
         );
         CREATE TABLE NAMED_ENTITIES(
             ID SERIAL PRIMARY KEY,
@@ -31,9 +34,9 @@ psql -U happy_user -d happy_db <<-EOSQL
 
         CREATE TABLE DOC_DATASET(
             ID SERIAL PRIMARY KEY,
+            file_name VARCHAR,
             full_text_tesseract VARCHAR,
             full_text_dedok VARCHAR,
-            file_name VARCHAR,
             event VARCHAR,
             format VARCHAR,
             big_summary TEXT,
