@@ -30,6 +30,12 @@ psql -U happy_user -d happy_db <<-EOSQL
             creation_date TIMESTAMP,
             producer VARCHAR
         );
+        CREATE TABLE TABLES(
+            ID SERIAL PRIMARY KEY,
+            doc_id INTEGER REFERENCES DOCUMENTS,
+            header TEXT[], 
+            rows TEXT[]
+        );
 
 
         CREATE TABLE DOC_DATASET(
