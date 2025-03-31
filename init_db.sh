@@ -67,5 +67,36 @@ psql -U happy_user -d happy_db <<-EOSQL
             producer VARCHAR
         );
 
+        CREATE TABLE ELIBRARY_DATASET(
+            ID SERIAL PRIMARY KEY,
+            filename VARCHAR,
+            text_dedoc TEXT,
+            tag VARCHAR
+        );
+        CREATE TABLE ELIBRARY_DATASET_TABLES(
+            ID SERIAL PRIMARY KEY,
+            doc_id INTEGER REFERENCES ELIBRARY_DATASET,
+            header TEXT[], 
+            rows TEXT[]
+        );
+        CREATE TABLE ELIBRARY_DATASET_SUMMARIES(
+            ID SERIAL PRIMARY KEY,
+            doc_id INTEGER REFERENCES ELIBRARY_DATASET,
+            lingvo_summary TEXT,
+            mt5_summary TEXT,
+            mbart_summary TEXT,
+            rut5_summary TEXT,
+            t5_summary TEXT
+        );
+        CREATE TABLE ELIBRARY_DATASET_SPELL(
+            ID SERIAL PRIMARY KEY,
+            doc_id INTEGER REFERENCES ELIBRARY_DATASET,
+            fre_t5_large_spell TEXT,
+            rum2m100 TEXT,
+            sage_fredt5_distilled TEXT,
+            sage_fredt5_large TEXT,
+            sage_m2m100 TEXT
+        );
+
     COMMIT;
 EOSQL
