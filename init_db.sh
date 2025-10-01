@@ -37,65 +37,28 @@ psql -U happy_user -d happy_db <<-EOSQL
             rows TEXT[]
         );
 
-
-        CREATE TABLE DOC_DATASET(
+        CREATE TABLE elibrary_dataset (
             ID SERIAL PRIMARY KEY,
-            file_name VARCHAR,
-            full_text_tesseract VARCHAR,
-            full_text_dedok VARCHAR,
-            event VARCHAR,
-            format VARCHAR,
-            big_summary TEXT,
-            summary TEXT,
-        );      
-        CREATE TABLE NAMED_ENTITIES_DATASET(
-            ID SERIAL PRIMARY KEY,
-            doc_id INTEGER,
-            entity VARCHAR,
-            value VARCHAR
-        );
-        CREATE TABLE METADATA_DATASET(
-            ID SERIAL PRIMARY KEY,
-            doc_id INTEGER,
-            format VARCHAR,
-            author VARCHAR,
-            creator VARCHAR,
-            title VARCHAR,
-            subject VARCHAR,
-            keywords VARCHAR,
-            creation_date TIMESTAMP,
-            producer VARCHAR
+            filename character varying,
+            text_dedoc text,
+            tag character varying,
+            target_summary text,
+            lingvo_summary text,
+            mt5_summary text,
+            mbart_summary text,
+            rut5_summary text,
+            t5_summary text,
         );
 
-        CREATE TABLE ELIBRARY_DATASET(
+        CREATE TABLE similarity_metrics (
             ID SERIAL PRIMARY KEY,
-            filename VARCHAR,
-            text_dedoc TEXT,
-            tag VARCHAR
-        );
-        CREATE TABLE ELIBRARY_DATASET_TABLES(
-            ID SERIAL PRIMARY KEY,
-            doc_id INTEGER REFERENCES ELIBRARY_DATASET,
-            header TEXT[], 
-            rows TEXT[]
-        );
-        CREATE TABLE ELIBRARY_DATASET_SUMMARIES(
-            ID SERIAL PRIMARY KEY,
-            doc_id INTEGER REFERENCES ELIBRARY_DATASET,
-            lingvo_summary TEXT,
-            mt5_summary TEXT,
-            mbart_summary TEXT,
-            rut5_summary TEXT,
-            t5_summary TEXT
-        );
-        CREATE TABLE ELIBRARY_DATASET_SPELL(
-            ID SERIAL PRIMARY KEY,
-            doc_id INTEGER REFERENCES ELIBRARY_DATASET,
-            fre_t5_large_spell TEXT,
-            rum2m100 TEXT,
-            sage_fredt5_distilled TEXT,
-            sage_fredt5_large TEXT,
-            sage_m2m100 TEXT
+            doc_id integer NOT NULL,
+            text_source text,
+            text_target text,
+            cointegrated_rubert_tiny2 double precision,
+            sergeyzh_labse_ru_sts double precision,
+            uaritm_multilingual_en_uk_pl_ru double precision,
+            deeppavlov_rubert_base_cased_sentence double precision,
         );
 
     COMMIT;
