@@ -5,8 +5,8 @@ psql -U happy_user -d happy_db <<-EOSQL
             ID SERIAL PRIMARY KEY,
             filename VARCHAR,
             content TEXT,
-            text_tesseract TEXT,
-            text_dedoc TEXT
+            TEXT_tesseract TEXT,
+            TEXT_dedoc TEXT
             big_summary TEXT,
             summary TEXT,
             upload_time TIMESTAMP,
@@ -39,26 +39,25 @@ psql -U happy_user -d happy_db <<-EOSQL
 
         CREATE TABLE elibrary_dataset (
             ID SERIAL PRIMARY KEY,
-            filename character varying,
-            text_dedoc text,
-            tag character varying,
-            target_summary text,
-            lingvo_summary text,
-            mt5_summary text,
-            mbart_summary text,
-            rut5_summary text,
-            t5_summary text,
+            filename VARCHAR,
+            source_text TEXT,
+            tag VARCHAR,
+            target_summary TEXT,
+            summary_lingvo TEXT,
+            summary_mt5 TEXT,
+            summary_mbart TEXT,
+            summary_rut5 TEXT,
+            summary_t5 TEXT,
         );
-
         CREATE TABLE similarity_metrics (
             ID SERIAL PRIMARY KEY,
-            doc_id integer NOT NULL,
-            text_source text,
-            text_target text,
-            cointegrated_rubert_tiny2 double precision,
-            sergeyzh_labse_ru_sts double precision,
-            uaritm_multilingual_en_uk_pl_ru double precision,
-            deeppavlov_rubert_base_cased_sentence double precision,
+            doc_id INTEGER NOT NULL,
+            text_source TEXT,
+            text_target TEXT,
+            metric_rubert_tiny2 DOUBLE PRECISION,
+            metric_labse_ru_sts DOUBLE PRECISION,
+            metric_multilingual DOUBLE PRECISION,
+            metric_rubert_base DOUBLE PRECISION,
         );
 
     COMMIT;
