@@ -47,7 +47,7 @@ psql -U happy_user -d happy_db <<-EOSQL
             summary_mt5 TEXT,
             summary_mbart TEXT,
             summary_rut5 TEXT,
-            summary_t5 TEXT,
+            summary_t5 TEXT
         );
         CREATE TABLE similarity_metrics (
             ID SERIAL PRIMARY KEY,
@@ -57,7 +57,7 @@ psql -U happy_user -d happy_db <<-EOSQL
             metric_rubert_tiny2 DOUBLE PRECISION,
             metric_labse_ru_sts DOUBLE PRECISION,
             metric_multilingual DOUBLE PRECISION,
-            metric_rubert_base DOUBLE PRECISION,
+            metric_rubert_base DOUBLE PRECISION
         );
 
     COMMIT;
