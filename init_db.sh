@@ -49,6 +49,12 @@ psql -U happy_user -d happy_db <<-EOSQL
             summary_rut5 TEXT,
             summary_t5 TEXT
         );
+        CREATE TABLE elibrary_dataset_tables(
+            ID SERIAL PRIMARY KEY,
+            doc_id INTEGER REFERENCES DOCUMENTS,
+            header TEXT[], 
+            rows TEXT[]
+        );
         CREATE TABLE similarity_metrics (
             ID SERIAL PRIMARY KEY,
             doc_id INTEGER NOT NULL,
